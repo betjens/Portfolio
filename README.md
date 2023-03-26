@@ -1,4 +1,4 @@
 # Portfolio
-A quick recap of pet projects, code mastery, showcase and related stuff.
+A quick recap of pet projects, code mastery, knowledge base and related stuff.
 
 ** UNDER CONSTRUCTION **
