@@ -38,7 +38,7 @@ def worker(df: pd.DataFrame, valid_words: list[str]):
         value = df.loc[idx]['clean']
         found = 'invalid'
         precision = 0
-
+        
         if value != '':
             temp = [(jaccard_distance(set(ngrams(value, 2)),
                                       set(ngrams(valid_value, 2))), valid_value)
@@ -73,16 +73,16 @@ def manager(df: pd.DataFrame, chunk_size: int, valid_words: list):
 
 
 if __name__ == "__main__":
-    raw_file = '../Resources/ws_invalid.csv'
-    valid_file = '../Resources/ws_valid.csv'
-    output_file = "../Resources/ws_output.csv"
+    raw_file = './Resources/ws_invalid.csv'
+    valid_file = './Resources/ws_valid.csv'
+    output_file = "./Resources/ws_output.csv"
 
     #load
     raw_words = list(loadFiles(file_name=raw_file))
     valid_words = list(loadFiles(file_name=valid_file))
     
     #cleanup
-    df = pd.DataFrame({'valid': valid_words, 'raw': raw_words})
+    df = pd.DataFrame({'raw': raw_words})
     df['clean'] = df['raw'].copy().apply(cleaner)
     df['found'] = None
 
@@ -98,8 +98,5 @@ if __name__ == "__main__":
     
     #results
     df = pd.concat(list_df)
-    df['is_match'] = np.where((df['valid'] == df['found']),1,0)
     df['found'] = df['found'].str.title()
-    df['valid'] = df['valid'].str.title()
-
     df.to_csv(output_file, index=False)
