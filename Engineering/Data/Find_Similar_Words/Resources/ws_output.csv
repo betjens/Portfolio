@@ -1,4 +1,4 @@
-raw,clean,found,precision
+raw,clean,corrected,precision
 rumba,rumba,Invalid,0.0
 coco cole,coco cole,Coca Cola,0.4
 macrosoft,macrosoft,Microsoft,0.6

@@ -58,7 +58,7 @@ def worker(df: pd.DataFrame, valid_words: list[str]):
                         found = second_try[0][1]
                         precision = round(second_try[0][0], 1)
 
-        df.loc[idx, 'found'] = found
+        df.loc[idx, 'corrected'] = found
         df.loc[idx, 'precision'] = precision
 
     return df
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     #cleanup
     df = pd.DataFrame({'raw': raw_words})
     df['clean'] = df['raw'].copy().apply(cleaner)
-    df['found'] = None
+    df['corrected'] = None
 
     #work
     cores = mp.cpu_count()
@@ -98,5 +98,5 @@ if __name__ == "__main__":
     
     #results
     df = pd.concat(list_df)
-    df['found'] = df['found'].str.title()
+    df['corrected'] = df['corrected'].str.title()
     df.to_csv(output_file, index=False)
