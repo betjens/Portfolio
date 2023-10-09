@@ -1,6 +1,6 @@
 # Find Similar Words
 
-A small analyst project which helps identify data and correct it based on a list of 'valid words'.
+A small analyst project which helps identify words and correct it based on a list of 'valid words'.
 
 Here is a small sample of its usage:
 
