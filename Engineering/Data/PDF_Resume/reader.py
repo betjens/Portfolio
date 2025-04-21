@@ -3,7 +3,7 @@ import ollama
 import asyncio
 
 
-pdf_path = "pdf_sample_files\A Brief Tour of Generative AI on Google Cloud.pdf"
+pdf_path = "pdf_sample_files\dummy.pdf"
 model="gemma3:1b" #<Your LLM name>
 init_prompt= """
 You are an expert GCP professional Machine Learning. 
