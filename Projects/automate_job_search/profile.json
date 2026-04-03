@@ -1,0 +1,34 @@
+{
+    "seniority": "Staff",
+    "years_experience": 12,
+    "roles": [
+        "Software Engineer",
+        "Lead Software Engineer"
+    ],
+    "core_skills": [
+        "Python",
+        "Go",
+        "Bazel",
+        "GCP",
+        "JavaScript",
+        "SQL",
+        "Lua",
+        "Terraform",
+        "IaC"
+    ],
+    "secondary_skills": [
+        "Data Streaming",
+        "Data Analysis",
+        "Cloud Engineering",
+        "Data Engineering"
+    ],
+    "certifications": [
+        "Professional Cloud Architect",
+        "Professional Data Engineer",
+        "Associate Cloud Engineer"
+    ],
+    "visa_status": {
+        "eu": "yes",
+        "usa": "yes"
+    }
+}
