@@ -256,6 +256,8 @@ airflow standalone
 
 This should make you able to see airflow running in `http://localhost:8080`.
 
+## Airflow Credentials
+
 1. In a new terminal, ran `wsl` to get a new virtual terminal.
 2. Go to your airflow directory. Usually it should be found in
 `/home/<account>/airflow` and peek the authentication file generated.
@@ -263,6 +265,12 @@ This should make you able to see airflow running in `http://localhost:8080`.
 cat simple_auth_manager_passwords.json.generated
 # This should provide you with the credentials to access to airflow interface.
 ```
+
+## Stopping Airflow
+
+To stop airflow, in the terminal running airflow just press `ctrl+c`.
+
+---
 
 ## Additional Details
 
