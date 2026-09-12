@@ -1,0 +1,16 @@
+date,order_id,product,category,quantity,price
+2026-09-01,1001,Laptop,Computers,2,1200
+2026-09-01,1002,Mouse,Accessories,10,25
+2026-09-01,1003,Keyboard,Accessories,5,80
+2026-09-02,1004,Laptop,Computers,1,1200
+2026-09-02,1005,Monitor,Displays,3,350
+2026-09-02,1006,Mouse,Accessories,7,25
+2026-09-03,1007,Keyboard,Accessories,4,80
+2026-09-03,1008,Monitor,Displays,2,350
+2026-09-03,1009,Laptop,Computers,1,1200
+2026-09-04,1010,Mouse,Accessories,12,25
+2026-09-04,1011,Monitor,Displays,1,350
+2026-09-04,1012,Keyboard,Accessories,6,80
+2026-09-05,1013,Laptop,Computers,2,1200
+2026-09-05,1014,Mouse,Accessories,5,25
+2026-09-05,1015,Monitor,Displays,4,350
