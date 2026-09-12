@@ -13,7 +13,7 @@ Output
 
 | raw        | clean      | corrected | precision           |
 |------------|------------|-----------|---------------------|
-| coco colo  | coco colo  | Coca Cola | 0.4                 |
+| coco colo  | coco colo  | Coca Cola | 0.7                 |
 | cocococo   | cocococo   | Coca Cola | 0.30000000000000004 |
 | cacopaco   | cacopaco   | Coca Cola | 0.19999999999999996 |
 | un related | un related | Invalid   | 0.0                 |

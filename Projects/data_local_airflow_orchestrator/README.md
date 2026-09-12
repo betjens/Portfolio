@@ -6,6 +6,9 @@ have installed `Visual Studio Code` as my code editor.
 ## Workspace setup
 
 1. Create a folder project. ie: `demo`
+
+> Note: If you want to install directly on windows, go directly to step 7.
+
 2. run:
 
 ```
