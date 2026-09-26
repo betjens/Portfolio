@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Atomic Office</title>
+    <link rel="stylesheet" href="/tailwind.css" />
+  </head>
+  <body class="bg-slate-100 text-slate-800 antialiased">
+    <div class="shell">
+      <aside>
+        <div class="brand border-b border-white/10 pb-6">
+          <span class="logo">✳</span>
+          <div>
+            <strong>ATOMIC OFFICE</strong><small><span data-i18n="localStudio">LOCAL AGENT STUDIO</span></small>
+          </div>
+        </div>
+        <div class="section-label"><span data-i18n="workspace">WORKSPACE</span></div>
+        <nav>
+          <a href="#office" class="selected">▦ <span data-i18n="office">Office</span></a
+          ><a href="#team">♧ <span data-i18n="agentTeam">Agent team</span></a
+          ><a href="#activity">◷ <span data-i18n="activity">Activity</span></a>
+        </nav>
+        <div class="side-bottom">
+          <div class="connection">
+            <i id="light"></i
+            ><span id="connectionText">Checking Atomic Chat…</span>
+          </div>
+          <small><span data-i18n="localMachine">Everything runs on your machine</span></small>
+        </div>
+      </aside>
+      <main class="min-w-0">
+        <header>
+          <div>
+            <div class="eyebrow"><span data-i18n="overview">WORKSPACE / OVERVIEW</span></div>
+            <h1 class="tracking-tight">
+              <span data-i18n="yourOffice">Your agent office</span> <span class="spark">✳</span>
+            </h1>
+            <p><span data-i18n="intro">Give your local AI team a task. Watch the work unfold.</span></p>
+          </div>
+          <div class="header-actions"><label class="language-control" for="languageSelect"><span data-i18n="language">Language</span><select id="languageSelect" aria-label="Language"><option value="en">English</option><option value="es">Español</option></select></label><div class="badge"><span data-i18n="localFirst">● LOCAL FIRST</span></div></div>
+        </header>
+        <div class="layout">
+          <div class="left">
+            <section
+              class="panel office-panel rounded-2xl shadow-sm"
+              id="office"
+            >
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow"><span data-i18n="liveView">LIVE VIEW</span></span>
+                  <h2><span data-i18n="theOffice">The office</span></h2>
+                </div>
+                <span class="live"><i></i> <span data-i18n="live">LIVE</span></span>
+              </div>
+              <div class="office rpg-map" id="officeScene">
+                <div class="map-wall top-wall"></div>
+                <div class="map-wall left-wall"></div>
+                <div class="map-wall right-wall"></div>
+                <div class="map-rug"></div>
+                <div class="map-bookshelf">▥ ▤ ▥</div>
+                <div class="map-board"><span data-i18n="questBoard">QUEST BOARD</span><br />▣ ▤ ▣</div>
+                <div class="map-plant plant-a">✿</div>
+                <div class="map-plant plant-b">✿</div>
+                <div class="map-cafe" data-i18n-aria="cafeBar" aria-label="Café bar">
+                  <div class="cafe-sign">CAFÉ ☕</div>
+                  <div class="cafe-counter">☕ ☕ ☕</div>
+                  <div class="cafe-seats" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                </div>
+                <div id="desks" class="desks"></div>
+                <div id="characters" class="characters"></div>
+                <div id="roomName" class="room-name"></div>
+                <div class="office-caption">
+                  ✦ <span id="officeCaption">Your team is ready for work</span>
+                </div>
+              </div>
+            </section>
+            <section class="panel composer rounded-2xl shadow-sm">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow"><span data-i18n="newAssignment">NEW ASSIGNMENT</span></span>
+                  <h2><span data-i18n="taskQuestion">What should the team work on?</span></h2>
+                </div>
+              </div>
+              <textarea
+                id="task"
+                data-i18n-placeholder="taskPlaceholder"
+                placeholder="e.g. Draft a technical plan for my new project…"
+              ></textarea>
+              <div class="composer-foot">
+                <span id="modeHint"
+                  ><span data-i18n="modeHint">Each agent builds on the previous result</span></span
+                ><button id="runButton">
+                  <span data-i18n="startAssignment">Start assignment</span> <span>↗</span>
+                </button>
+              </div>
+              <p class="message" id="message"></p>
+            </section>
+            <section class="panel activity rounded-2xl shadow-sm" id="activity">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow"><span data-i18n="workLog">WORK LOG</span></span>
+                  <h2><span data-i18n="latestAssignment">Latest assignment</span></h2>
+                </div>
+                <span id="runStatus" class="status"><span data-i18n="noRuns">No runs yet</span></span>
+              </div>
+              <div id="steps" class="steps">
+                <div class="empty">
+                  <span data-i18n="emptyWork">Start an assignment to see each agent's work here.</span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="right">
+            <section class="panel team rounded-2xl shadow-sm" id="team">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow"><span data-i18n="yourPeople">YOUR PEOPLE</span></span>
+                  <h2>Agent team</h2>
+                </div>
+              </div>
+              <div id="teamList"></div>
+              <button id="addPerson" class="add-person"><span data-i18n="addAgent">+ Add agent</span></button>
+            </section>
+            <section class="panel settings rounded-2xl shadow-sm">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow"><span data-i18n="connection">CONNECTION</span></span>
+                  <h2>Atomic Chat</h2>
+                </div>
+              </div>
+              <label
+                ><span data-i18n="apiEndpoint">API endpoint</span><input
+                  id="endpoint"
+                  value="http://localhost:1337/v1" /></label
+              ><label
+                ><span data-i18n="model">Model</span><select id="model">
+                  <option value="" data-i18n="selectModel">Select a model…</option>
+                </select></label
+              ><label
+                ><span data-i18n="timeout">Response timeout (seconds)</span><input
+                  id="modelTimeout"
+                  type="number"
+                  min="5"
+                  max="3600"
+                  value="600"
+              /></label>
+              <label class="connection-option"
+                ><input id="streamResponse" type="checkbox" /> <span data-i18n="streamResponses">Stream responses
+                as agents work</span></label
+              >
+              <label
+                ><span data-i18n="temperature">Temperature (optional, 0–2)</span><input
+                  id="temperature"
+                  type="number"
+                  min="0"
+                  max="2"
+                  step="0.1"
+                  data-i18n-placeholder="modelDefault" placeholder="Use model default"
+              /></label>
+              <div class="settings-actions">
+                <button id="refreshModels" class="outline">
+                  <span data-i18n="detectModels">↻ Detect models</span></button
+                ><button id="saveSettings" class="outline"><span data-i18n="save">Save</span></button>
+              </div>
+              <p class="hint">
+                <span data-i18n="connectionHint">Enable the local API server in Atomic Chat and load a model
+                first.</span>
+              </p>
+            </section>
+            <div class="tip">
+              ✳ <strong><span data-i18n="tipTitle">A little office, a lot of possibility.</span></strong><br />
+              <span data-i18n="tipBody">Your agents use the same local model with different
+              responsibilities.</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <dialog id="teamDialog">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow"><span data-i18n="teamBuilder">TEAM BUILDER</span></span>
+          <h2><span data-i18n="customizeAgents">Customize your agents</span></h2>
+        </div>
+        <button type="button" id="closeDialog" class="text-button">✕</button>
+      </div>
+      <p class="editor-help">
+        <span data-i18n="editorHelp">Set this agent's role, behavior and character image.</span>
+      </p>
+      <div id="agentEditor"></div>
+      <div class="dialog-actions">
+        <button type="button" id="cancelTeam" class="outline"><span data-i18n="cancel">Cancel</span></button
+        ><button type="button" id="saveTeam"><span data-i18n="saveTeam">Save team</span></button>
+      </div>
+    </dialog>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

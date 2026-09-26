@@ -1,0 +1,388 @@
+/* Top-down RPG office map. All geometry is made of crisp, editable tiles. */
+.office.rpg-map {
+  height: 470px;
+  border: 8px solid #557a58;
+  border-radius: 3px;
+  overflow: hidden;
+  image-rendering: pixelated;
+  background-color: #c9b889;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 31px, #b5a477 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, #b5a477 31px 32px);
+  box-shadow:
+    inset 0 0 0 5px #dbc89b,
+    0 5px 0 #375d40;
+  --tile: #c9b889;
+  --tile-line: #b5a477;
+  --wall: #759d73;
+  --wall-dark: #507751;
+}
+.office.rpg-map:before,
+.office.rpg-map:after {
+  content: none;
+}
+.office.rpg-map {
+  background-color: var(--tile);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 31px,
+      var(--tile-line) 31px 32px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 31px,
+      var(--tile-line) 31px 32px
+    );
+}
+.map-wall {
+  position: absolute;
+  z-index: 5;
+  background: var(--wall);
+  box-shadow: inset 0 -7px var(--wall-dark);
+}
+.top-wall {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 54px;
+  border-bottom: 8px solid var(--wall-dark);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 31px,
+    #ffffff1b 31px 32px
+  );
+}
+.left-wall,
+.right-wall {
+  top: 54px;
+  bottom: 0;
+  width: 16px;
+  box-shadow: inset -5px 0 var(--wall-dark);
+}
+.left-wall {
+  left: 0;
+}
+.right-wall {
+  right: 0;
+  box-shadow: inset 5px 0 var(--wall-dark);
+}
+.map-rug {
+  position: absolute;
+  left: 8%;
+  top: 29%;
+  width: 44%;
+  height: 56%;
+  background: repeating-linear-gradient(
+    90deg,
+    #af7b5c 0 12px,
+    #bb8967 12px 24px
+  );
+  border: 9px solid #724b46;
+  box-shadow:
+    0 0 0 5px #e3c788,
+    5px 6px #6d514055;
+  opacity: 0.72;
+}
+.map-bookshelf,
+.map-board,
+.map-plant {
+  position: absolute;
+  z-index: 6;
+  font:
+    700 14px ui-monospace,
+    monospace;
+  text-align: center;
+  image-rendering: pixelated;
+}
+.map-bookshelf {
+  top: 61px;
+  left: 11%;
+  width: 102px;
+  height: 28px;
+  color: #edd2a0;
+  background: #876148;
+  border-bottom: 8px solid #5c4337;
+  box-shadow: 4px 4px #453729;
+}
+.map-board {
+  top: 62px;
+  right: 12%;
+  width: 105px;
+  height: 55px;
+  padding-top: 6px;
+  font-size: 10px;
+  line-height: 18px;
+  color: #644e38;
+  background: #e7d29b;
+  border: 6px solid #845c43;
+  box-shadow: 4px 4px #59422f;
+}
+.map-plant {
+  bottom: 24px;
+  font-size: 24px;
+  color: #2b794c;
+  text-shadow:
+    3px 3px #81ad62,
+    -3px 2px #90bd71;
+}
+.plant-a {
+  left: 31px;
+}
+.plant-b {
+  right: 29px;
+}
+.office.rpg-map .desks {
+  z-index: 10;
+}
+.office.rpg-map .station {
+  width: 72px;
+  height: 53px;
+  touch-action: none;
+}
+.workstation {
+  position: relative;
+  width: 68px;
+  height: 45px;
+  filter: drop-shadow(4px 5px #4a44393d);
+}
+.desk-surface {
+  position: absolute;
+  top: 12px;
+  width: 68px;
+  height: 22px;
+  background: #ab794d;
+  border: 5px solid #714b38;
+  box-shadow: inset 0 4px #d4a472;
+}
+.desk-legs {
+  position: absolute;
+  top: 35px;
+  left: 7px;
+  width: 53px;
+  height: 9px;
+  border-left: 8px solid #694c37;
+  border-right: 8px solid #694c37;
+}
+.desk-screen {
+  position: absolute;
+  z-index: 2;
+  top: -3px;
+  left: 20px;
+  width: 28px;
+  height: 24px;
+  background: #435e56;
+  border: 4px solid #2d4945;
+  color: #c9efbf;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  box-shadow: 3px 3px #2f423d;
+}
+.desk-chair {
+  position: absolute;
+  z-index: -1;
+  top: 36px;
+  left: 19px;
+  width: 31px;
+  height: 15px;
+  background: #634b45;
+  border: 4px solid #3c3533;
+}
+.characters {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.walker {
+  position: absolute;
+  width: 70px;
+  text-align: center;
+  transform: translate(-50%, -67%);
+  pointer-events: none;
+  will-change: left, top;
+}
+.walker:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 18px;
+  left: 24px;
+  width: 22px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4a473e65;
+  z-index: -1;
+}
+.walker .sprite-canvas {
+  width: 56px;
+  height: 56px;
+  margin: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(1px 2px #3d3b3977);
+}
+.walker.busy .sprite-canvas {
+  filter: drop-shadow(0 0 5px #76e9ac);
+}
+.walker-name {
+  display: inline-block;
+  max-width: 82px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  padding: 3px 5px;
+  background: #f8f1d3;
+  border: 2px solid #765f4a;
+  box-shadow: 2px 2px #514531;
+  color: #3c4b38;
+  font:
+    700 9px ui-monospace,
+    monospace;
+}
+.walker-status {
+  position: absolute;
+  right: 3px;
+  top: 2px;
+  background: #d8e9d5;
+  border: 2px solid #597458;
+  color: #315b3e;
+  width: 20px;
+  height: 20px;
+  font:
+    700 12px ui-monospace,
+    monospace;
+  line-height: 16px;
+  z-index: 2;
+}
+.walker.busy .walker-status {
+  background: #f8d591;
+  color: #875c2f;
+  animation: pixel-work 0.32s steps(2) infinite alternate;
+}
+.office.rpg-map .room-name {
+  z-index: 7;
+  top: 11px;
+  left: 18px;
+  border: 3px solid #365839;
+  border-radius: 0;
+  background: #e4eaca;
+  color: #33543d;
+  font:
+    700 11px ui-monospace,
+    monospace;
+}
+.office.rpg-map .office-caption {
+  z-index: 30;
+  left: 24px;
+  bottom: 15px;
+  background: #f2ead0;
+  border: 3px solid #86694c;
+  padding: 6px 9px;
+  font:
+    10px ui-monospace,
+    monospace;
+  color: #4c5b45;
+}
+.office.rpg-map .floor,
+.office.rpg-map .window {
+  display: none;
+}
+@media (max-width: 530px) {
+  .office.rpg-map {
+    height: 370px;
+  }
+  .map-board {
+    right: 8%;
+    width: 70px;
+    font-size: 8px;
+  }
+  .map-bookshelf {
+    left: 7%;
+    width: 75px;
+  }
+  .walker {
+    width: 55px;
+  }
+  .walker .sprite-canvas {
+    width: 44px;
+    height: 44px;
+  }
+  .walker-name {
+    max-width: 60px;
+    font-size: 8px;
+  }
+  .workstation {
+    transform: scale(0.78);
+    transform-origin: top left;
+  }
+}
+
+/* The right side of the floor is reserved for the café and its seats. */
+.map-cafe {
+  position: absolute;
+  left: 60%;
+  top: 30%;
+  width: 35%;
+  height: 51%;
+  z-index: 8;
+  pointer-events: none;
+  background: #e0c69a;
+  border: 7px solid #805d45;
+  box-shadow: inset 0 0 0 5px #ecd9ad, 5px 6px #62493666;
+  font: 700 12px ui-monospace, monospace;
+  text-align: center;
+}
+.cafe-sign {
+  width: 92px;
+  margin: 8px auto;
+  padding: 4px;
+  color: #fce8b6;
+  background: #5b4939;
+  border: 3px solid #a27151;
+}
+.cafe-counter {
+  height: 42px;
+  margin: 0 8px;
+  padding-top: 8px;
+  background: #c3915e;
+  border: 6px solid #73513e;
+  box-shadow: 3px 4px #624936;
+  letter-spacing: 7px;
+}
+.cafe-seats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 13px 5px;
+  margin: 12px 15px;
+}
+.cafe-seats i {
+  width: 25px;
+  height: 20px;
+  background: #916943;
+  border: 5px solid #614432;
+  box-shadow: 3px 3px #5b483a;
+}
+.chat-bubble {
+  display: none;
+  position: absolute;
+  bottom: 76px;
+  left: 39px;
+  min-width: 27px;
+  padding: 3px;
+  background: #fff8db;
+  border: 2px solid #745c45;
+  color: #5c4b38;
+  font: 700 12px ui-monospace, monospace;
+}
+.walker.chatting .chat-bubble { display: block; }
+.station.vacant { opacity: 0.85; pointer-events: none; }
+@media (max-width: 530px) {
+  .map-cafe { left: 58%; width: 39%; }
+  .cafe-seats { gap: 8px 2px; margin: 10px 4px; }
+  .cafe-seats i { width: 17px; height: 17px; border-width: 4px; }
+  .cafe-counter { letter-spacing: 1px; }
+  .chat-bubble { bottom: 58px; left: 22px; }
+}
